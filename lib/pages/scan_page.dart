@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ScanPage extends StatefulWidget {
   static const String routeName = 'scan';
@@ -23,14 +24,14 @@ class _ScanPageState extends State<ScanPage> {
             children: [
               TextButton.icon(
                 onPressed: (){
-                  
+                  getImage(ImageSource.camera);
                 },
                 icon: const Icon(Icons.camera),
                 label:const  Text('Capture'),
               ),
               TextButton.icon(
                 onPressed: (){
-
+                  getImage(ImageSource.gallery);
                 },
                 icon: const Icon(Icons.photo_album),
                 label:const  Text('Gallery'),
@@ -40,5 +41,13 @@ class _ScanPageState extends State<ScanPage> {
         ],
       ),
     );
+  }
+
+  void getImage(ImageSource camera) async{
+   final xFile = await ImagePicker().pickImage(source: camera,);
+   if(xFile!= null){
+     print(xFile.path);
+   }
+
   }
 }
