@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vcard_project/pages/home_page.dart';
+import 'package:vcard_project/pages/scan_page.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,10 +27,16 @@ class MyApp extends StatelessWidget {
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
-        name: HomePage.routeName,
-        path: HomePage.routeName,
-        builder: (context, state) => const HomePage(),
-      )
+          name: HomePage.routeName,
+          path: HomePage.routeName,
+          builder: (context, state) => const HomePage(),
+          routes: [
+            GoRoute(
+              name: ScanPage.routeName,
+              path: ScanPage.routeName,
+              builder: (context, state) => const ScanPage(),
+            )
+          ])
     ],
   );
 }
