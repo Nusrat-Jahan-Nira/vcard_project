@@ -1,18 +1,18 @@
 
 import 'package:flutter/material.dart';
 
-class DropTargetItem extends StatefulWidget {
+class DragTargetItem extends StatefulWidget {
   final String property;
   final Function(String, String) onDrop;
 
-  const DropTargetItem(
+  const DragTargetItem(
       {super.key, required this.property, required this.onDrop});
 
   @override
-  State<DropTargetItem> createState() => _DropTargetItemState();
+  State<DragTargetItem> createState() => _DragTargetItemState();
 }
 
-class _DropTargetItemState extends State<DropTargetItem> {
+class _DragTargetItemState extends State<DragTargetItem> {
   String dragItem = '';
 
   @override
@@ -36,7 +36,7 @@ class _DropTargetItemState extends State<DropTargetItem> {
                   child: Row(
                     children: [
                       Expanded(child: Text(
-                        dragItem.isNotEmpty?'Drop here': dragItem
+                        dragItem.isEmpty?'Drop here': dragItem
                       )),
                       if(dragItem.isNotEmpty) InkWell(
                         onTap: (){

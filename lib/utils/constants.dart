@@ -7,3 +7,5 @@ abstract final class ContactProperties{
   static const String designation = "Designation";
   static const String website = "Website";
 }
+
+const String hint = 'Long press and Drag each item from the below list and drop above in the appropriate box. You can drop multiple items in a single box.';
