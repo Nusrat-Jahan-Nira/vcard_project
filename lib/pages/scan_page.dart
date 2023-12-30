@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vcard_project/items/line_item.dart';
 
 class ScanPage extends StatefulWidget {
   static const String routeName = 'scan';
@@ -15,6 +16,10 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+
+  bool isScanOver = false;
+  List<String> lines = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +46,9 @@ class _ScanPageState extends State<ScanPage> {
                 label:const  Text('Gallery'),
               )
             ],
+          ),
+          Wrap(
+            children: lines.map((line) => LineItem(line:line)).toList(),
           )
         ],
       ),
@@ -62,6 +70,12 @@ class _ScanPageState extends State<ScanPage> {
          tempList.add(line.text);
        }
      }
+
+     setState(() {
+       lines = tempList;
+       isScanOver = true;
+
+     });
      print(tempList);
 
    }
