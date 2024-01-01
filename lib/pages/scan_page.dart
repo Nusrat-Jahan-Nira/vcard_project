@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vcard_project/items/drag_target_item.dart';
 import 'package:vcard_project/items/line_item.dart';
+import 'package:vcard_project/models/contact_model.dart';
+import 'package:vcard_project/pages/form_page.dart';
 import 'package:vcard_project/utils/constants.dart';
 
 class ScanPage extends StatefulWidget {
@@ -30,6 +33,20 @@ class _ScanPageState extends State<ScanPage> {
       website = '',
       image = '';
 
+  void createContact() {
+    final contact = ContactModel(
+      name: name,
+      mobile: mobile,
+      email: email,
+      address: address,
+      company: company,
+      designation: designation,
+      website: website,
+      image: image
+    );
+    context.goNamed(FormPage.routeName,extra: contact);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +54,7 @@ class _ScanPageState extends State<ScanPage> {
         title: const Text('Scan Page'),
         actions: [
           IconButton(
-            onPressed: image.isEmpty? null : () {},
+            onPressed: image.isEmpty ? null : createContact,
             icon: const Icon(Icons.arrow_forward),
           )
         ],
