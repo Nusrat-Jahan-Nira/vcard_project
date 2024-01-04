@@ -8,4 +8,5 @@ abstract final class ContactProperties{
   static const String website = "Website";
 }
 
+const String emptyFieldErrMsg = 'This field must not be empty';
 const String hint = 'Long press and Drag each item from the below list and drop above in the appropriate box. You can drop multiple items in a single box.';
