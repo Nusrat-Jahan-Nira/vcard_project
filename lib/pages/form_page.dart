@@ -145,19 +145,22 @@ class _FormPageState extends State<FormPage> {
      widget.contactModel.company = companyController.text;
      widget.contactModel.designation = designationController.text;
      widget.contactModel.website = websiteController.text;
+
+
+     Provider.of<ContactProvider>(context, listen: false).insertContact(
+         widget.contactModel)
+         .then((value){
+       if(value > 0){
+         showMsg(context, 'Saved!');
+         context.goNamed(HomePage.routeName);
+
+       }
+     })
+         .catchError((onError){
+       showMsg(context, 'Failed to save!');
+     });
+
     }
 
-    Provider.of<ContactProvider>(context, listen: false).insertContact(
-        widget.contactModel)
-    .then((value){
-      if(value > 0){
-        showMsg(context, 'Saved!');
-        context.goNamed(HomePage.routeName);
-
-      }
-    })
-    .catchError((onError){
-      showMsg(context, 'Failed to save!');
-    });
-  }
+   }
 }

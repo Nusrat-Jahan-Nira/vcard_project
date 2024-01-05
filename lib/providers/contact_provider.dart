@@ -7,8 +7,12 @@ class ContactProvider extends ChangeNotifier{
   List<ContactModel> contactList = [];
   final db = DbHelper();
 
-  Future<int> insertContact(ContactModel contactModel) {
-    return db.insertContact(contactModel);
+  Future<int> insertContact(ContactModel contactModel) async{
+    final rowId =  await db.insertContact(contactModel);
+    contactModel.id = rowId;
+    contactList.add(contactModel);
+    notifyListeners();
+    return rowId;
   }
 
   Future<void> getAllContacts() async{
