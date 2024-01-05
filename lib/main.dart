@@ -5,9 +5,16 @@ import 'package:vcard_project/models/contact_model.dart';
 import 'package:vcard_project/pages/form_page.dart';
 import 'package:vcard_project/pages/home_page.dart';
 import 'package:vcard_project/pages/scan_page.dart';
+import 'package:provider/provider.dart';
+import 'package:vcard_project/providers/contact_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ContactProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
